@@ -1,33 +1,19 @@
-# ============================================================================
-# CloudKitchen umbrella chart — default values
-# ----------------------------------------------------------------------------
-# Flat, explicit, one block per service. Each microservice block drives its own
-# <svc>-deployment.yaml / -service.yaml / -configmap.yaml / -secret.yaml / -hpa.yaml.
-# This is THE values file ArgoCD renders with and CI patches (per-service image
-# strings) — there are no separate per-environment override files.
-# =============================================================================
-
-# Namespace every resource is created in.
 namespace: cloudkitchen
-# Container registry that holds the service images (GCP Artifact Registry for GKE).
 imageRegistry: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry
-# -----------------------------------------------------------------------------
-# Backend microservices (all listen on :8080, expose /healthz and /readyz)
-# -----------------------------------------------------------------------------
 authService:
   deploymentname: auth-service-deployment
   servicename: auth-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/auth-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/auth-service:'
   replicas: 1
   port: 8080
-  schema: auth # PostgreSQL schema this service owns
+  schema: auth
   hpa: auth-service-autoscaler
   minReplicas: 1
   maxReplicas: 5
 userService:
   deploymentname: user-service-deployment
   servicename: user-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/user-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/user-service:'
   replicas: 1
   port: 8080
   schema: users
@@ -37,7 +23,7 @@ userService:
 restaurantService:
   deploymentname: restaurant-service-deployment
   servicename: restaurant-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/restaurant-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/restaurant-service:'
   replicas: 1
   port: 8080
   schema: restaurants
@@ -47,7 +33,7 @@ restaurantService:
 menuService:
   deploymentname: menu-service-deployment
   servicename: menu-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/menu-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/menu-service:'
   replicas: 1
   port: 8080
   schema: menu
@@ -57,7 +43,7 @@ menuService:
 orderService:
   deploymentname: order-service-deployment
   servicename: order-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/order-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/order-service:'
   replicas: 1
   port: 8080
   schema: orders
@@ -67,7 +53,7 @@ orderService:
 paymentService:
   deploymentname: payment-service-deployment
   servicename: payment-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/payment-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/payment-service:'
   replicas: 1
   port: 8080
   schema: payments
@@ -77,7 +63,7 @@ paymentService:
 deliveryService:
   deploymentname: delivery-service-deployment
   servicename: delivery-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/delivery-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/delivery-service:'
   replicas: 1
   port: 8080
   schema: delivery
@@ -87,87 +73,58 @@ deliveryService:
 notificationService:
   deploymentname: notification-service-deployment
   servicename: notification-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/notification-service:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/notification-service:'
   replicas: 1
   port: 8080
   schema: notifications
   hpa: notification-service-autoscaler
   minReplicas: 1
   maxReplicas: 5
-# -----------------------------------------------------------------------------
-# Frontend (React build served by non-root nginx on :8080)
-# -----------------------------------------------------------------------------
 frontend:
   deploymentname: frontend-deployment
   servicename: frontend-service
-  image: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/frontend:2fec561
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/frontend:'
   replicas: 1
   port: 8080
   hpa: frontend-autoscaler
   minReplicas: 1
   maxReplicas: 4
-# -----------------------------------------------------------------------------
-# In-cluster data stores (explicit manifests, not subcharts)
-# -----------------------------------------------------------------------------
 postgres:
   name: postgres
   servicename: postgres
-  image: postgres:16-alpine
+  image: 'postgres:'
   port: 5432
   storage: 10Gi
-  storageClass: standard-rwo # GKE StorageClass (provided by GCE PD CSI driver)
+  storageClass: standard-rwo
 redis:
   name: redis
   servicename: redis
-  image: redis:7-alpine
+  image: 'redis:'
   port: 6379
 nats:
   name: nats
   servicename: nats
-  image: nats:2.10-alpine
-  clientPort: 4222 # NATS client protocol
-  monitorPort: 8222 # HTTP monitoring endpoint
-  storage: 5Gi # JetStream file storage
+  image: 'nats:'
+  clientPort: 4222
+  monitorPort: 8222
+  storage: 5Gi
   storageClass: standard-rwo
-# -----------------------------------------------------------------------------
-# Shared database connection (single DB "cloudkitchen", schema-per-service)
-# -----------------------------------------------------------------------------
 db:
   host: postgres
-  port: "5432"
+  port: '5432'
   name: cloudkitchen
   sslmode: disable
-# -----------------------------------------------------------------------------
-# Ingress (Traefik) + TLS (cert-manager)
-# -----------------------------------------------------------------------------
 ingress:
   enabled: true
-  # HTTP-only vs HTTPS:
-  #   tls: false + entryPoint: web        -> first-day deploy (Phase 4), no cert needed.
-  #   tls: true  + entryPoint: websecure  -> HTTPS via cert-manager (Phase 7).
   tls: false
-  # Production hostname (the DNS name your users / domain point at).
   host: vijaygiduthuri.in
-  # Traefik LoadBalancer IP — kept as a second host so curl-by-IP still
-  # works for debugging even after DNS is in place. Get it with:
-  #   kubectl -n traefik get svc traefik \
-  #     -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
   lbIP: 136.119.163.255
   entryPoint: web
   tlsSecretName: cloudkitchen-tls
   clusterIssuer: letsencrypt-prod
-# -----------------------------------------------------------------------------
-# Observability IngressRoutes + ServiceMonitor are NOT in this chart.
-# They're applied as plain YAML via kubectl apply — see docs/gcp/06 Steps 5+6.
-# Keeping them out of the chart keeps the cloudkitchen chart focused on the
-# app itself, and matches the doc's copy-paste-friendly format.
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-# Secrets (DEV DEFAULTS ONLY — override per-environment / use a secrets manager)
-# -----------------------------------------------------------------------------
 secrets:
   dbUser: cloudkitchen
   dbPassword: cloudkitchen-dev-password
   jwtSecret: changeme-use-a-strong-secret-in-production
   jwtExpiry: 24h
-  redisPassword: ""
+  redisPassword: ''
