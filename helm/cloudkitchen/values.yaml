@@ -3,7 +3,7 @@ imageRegistry: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudki
 authService:
   deploymentname: auth-service-deployment
   servicename: auth-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/auth-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/auth-service:build-47'
   replicas: 1
   port: 8080
   schema: auth
@@ -13,7 +13,7 @@ authService:
 userService:
   deploymentname: user-service-deployment
   servicename: user-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/user-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/user-service:build-47'
   replicas: 1
   port: 8080
   schema: users
@@ -23,7 +23,7 @@ userService:
 restaurantService:
   deploymentname: restaurant-service-deployment
   servicename: restaurant-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/restaurant-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/restaurant-service:build-47'
   replicas: 1
   port: 8080
   schema: restaurants
@@ -33,7 +33,7 @@ restaurantService:
 menuService:
   deploymentname: menu-service-deployment
   servicename: menu-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/menu-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/menu-service:build-47'
   replicas: 1
   port: 8080
   schema: menu
@@ -43,7 +43,7 @@ menuService:
 orderService:
   deploymentname: order-service-deployment
   servicename: order-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/order-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/order-service:build-47'
   replicas: 1
   port: 8080
   schema: orders
@@ -53,7 +53,7 @@ orderService:
 paymentService:
   deploymentname: payment-service-deployment
   servicename: payment-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/payment-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/payment-service:build-47'
   replicas: 1
   port: 8080
   schema: payments
@@ -63,7 +63,7 @@ paymentService:
 deliveryService:
   deploymentname: delivery-service-deployment
   servicename: delivery-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/delivery-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/delivery-service:build-47'
   replicas: 1
   port: 8080
   schema: delivery
@@ -73,7 +73,7 @@ deliveryService:
 notificationService:
   deploymentname: notification-service-deployment
   servicename: notification-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/notification-service:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/notification-service:build-47'
   replicas: 1
   port: 8080
   schema: notifications
@@ -83,7 +83,7 @@ notificationService:
 frontend:
   deploymentname: frontend-deployment
   servicename: frontend-service
-  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/frontend:'
+  image: 'us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry/frontend:build-47'
   replicas: 1
   port: 8080
   hpa: frontend-autoscaler
@@ -99,12 +99,12 @@ postgres:
 redis:
   name: redis
   servicename: redis
-  image: 'redis:'
+  image: 'redis:build-47'
   port: 6379
 nats:
   name: nats
   servicename: nats
-  image: 'nats:'
+  image: 'nats:build-47'
   clientPort: 4222
   monitorPort: 8222
   storage: 5Gi
