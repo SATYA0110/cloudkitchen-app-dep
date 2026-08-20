@@ -37,11 +37,11 @@ spec:
           containerPort: {{ .Values.userService.port }}
         resources:
           requests:
-            cpu: 100m
+            cpu: 50m
             memory: 128Mi
           limits:
-            cpu: 500m
-            memory: 512Mi
+            cpu: 80m
+            memory: 252Mi
         livenessProbe:
           httpGet:
             path: /healthz
