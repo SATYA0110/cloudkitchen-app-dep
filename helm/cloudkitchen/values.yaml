@@ -92,7 +92,7 @@ frontend:
 postgres:
   name: postgres
   servicename: postgres
-  image: 'postgres:'
+  image: 'quay.io/postgres:15-alpine'
   port: 5432
   storage: 10Gi
   storageClass: standard-rwo
