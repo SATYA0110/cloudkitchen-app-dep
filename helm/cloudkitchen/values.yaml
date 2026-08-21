@@ -1,3 +1,5 @@
+globalImagePullSecrets:
+  - name: artifact-registry-key
 namespace: cloudkitchen
 imageRegistry: us-central1-docker.pkg.dev/project-d31a3358-346c-40e8-bda/cloudkitchen-registry
 authService:
