@@ -30,9 +30,9 @@ spec:
           isDefaultClass: true
         ports:
           web:
-            redirectTo:
-              port: websecure # force HTTP -> HTTPS
+           exposedPort: 80
           websecure:
+           exposedPort: 443
             tls:
               enabled: true
         providers:
