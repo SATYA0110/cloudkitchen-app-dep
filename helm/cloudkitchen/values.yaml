@@ -101,12 +101,12 @@ postgres:
 redis:
   name: redis
   servicename: redis
-  image: 'redis:build-47'
+  image: 'redis:build'
   port: 6379
 nats:
   name: nats
   servicename: nats
-  image: 'nats:build-47'
+  image: 'nats:build'
   clientPort: 4222
   monitorPort: 8222
   storage: 5Gi
