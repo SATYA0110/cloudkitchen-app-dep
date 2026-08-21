@@ -8,7 +8,8 @@ metadata:
     app: cloudkitchen
 spec:
   entryPoints:
-    - {{ .Values.ingress.entryPoint }}
+    - {{ .Values.ingress.entryPoint }}  # likely 'web'
+    - websecure 
   routes:
     # --- menu sub-paths under /api/restaurants (higher priority) ---
     - match: (Host(`{{ .Values.ingress.host }}`) || Host(`{{ .Values.ingress.lbIP }}`)) && PathRegexp(`^/api/restaurants/[^/]+/(menu|categories|items)`)
