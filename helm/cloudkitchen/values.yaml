@@ -5,7 +5,7 @@ imageRegistry: us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-regi
 authService:
   deploymentname: auth-service-deployment
   servicename: auth-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/auth-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/auth-service:build-48'
   replicas: 1
   port: 8080
   schema: auth
@@ -15,7 +15,7 @@ authService:
 userService:
   deploymentname: user-service-deployment
   servicename: user-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/user-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/user-service:build-48'
   replicas: 1
   port: 8080
   schema: users
@@ -25,7 +25,7 @@ userService:
 restaurantService:
   deploymentname: restaurant-service-deployment
   servicename: restaurant-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/restaurant-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/restaurant-service:build-48'
   replicas: 1
   port: 8080
   schema: restaurants
@@ -35,7 +35,7 @@ restaurantService:
 menuService:
   deploymentname: menu-service-deployment
   servicename: menu-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/menu-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/menu-service:build-48'
   replicas: 1
   port: 8080
   schema: menu
@@ -45,7 +45,7 @@ menuService:
 orderService:
   deploymentname: order-service-deployment
   servicename: order-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/order-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/order-service:build-48'
   replicas: 1
   port: 8080
   schema: orders
@@ -55,7 +55,7 @@ orderService:
 paymentService:
   deploymentname: payment-service-deployment
   servicename: payment-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/payment-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/payment-service:build-48'
   replicas: 1
   port: 8080
   schema: payments
@@ -65,7 +65,7 @@ paymentService:
 deliveryService:
   deploymentname: delivery-service-deployment
   servicename: delivery-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/delivery-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/delivery-service:build-48'
   replicas: 1
   port: 8080
   schema: delivery
@@ -75,7 +75,7 @@ deliveryService:
 notificationService:
   deploymentname: notification-service-deployment
   servicename: notification-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/notification-service:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/notification-service:build-48'
   replicas: 1
   port: 8080
   schema: notifications
@@ -85,7 +85,7 @@ notificationService:
 frontend:
   deploymentname: frontend-deployment
   servicename: frontend-service
-  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/frontend:build-47'
+  image: 'us-central1-docker.pkg.dev/grand-bank-504602-d2/cloudkitchen-registry/frontend:build-48'
   replicas: 1
   port: 8080
   hpa: frontend-autoscaler
