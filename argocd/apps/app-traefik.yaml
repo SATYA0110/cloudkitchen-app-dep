@@ -49,9 +49,7 @@ spec:
           kubernetesCRD:
             enabled: true
             allowCrossNamespace: true
-            namespaces:
-              - ingress
-              - cloudkitchen
+            
             
         resources:
           requests:
