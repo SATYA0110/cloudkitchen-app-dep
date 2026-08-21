@@ -15,7 +15,7 @@ spec:
   project: cloudkitchen
 
   source:
-    repoURL: https://helm.traefik.io/traefik # official Traefik Helm repo
+    repoURL: https://traefik.io # official Traefik Helm repo
     chart: traefik
     targetRevision: 28.3.0 # pin chart version (Traefik v3.x); bump deliberately
     helm:
@@ -28,12 +28,20 @@ spec:
         ingressClass:
           enabled: true
           isDefaultClass: true
-        # 🌟 Cleaned and uniform indented values properties blocks:
+          
+        # 🌟 Restored to official port definitions matching container expectations:
         ports:
           web:
+            port: 8000
             exposedPort: 80
+            protocol: TCP
           websecure:
+            port: 8443
             exposedPort: 443
+            protocol: TCP
+            # 🌟 Fully disabled TLS block mapping at the entrypoint wrapper:
+            tls:
+              enabled: false
             
         providers:
           kubernetesIngress:
@@ -50,7 +58,7 @@ spec:
             memory: 256Mi
 
   destination:
-    server: https://kubernetes.default.svc
+    server: https://default.svc
     namespace: ingress
 
   syncPolicy:
