@@ -33,8 +33,7 @@ spec:
            exposedPort: 80
           websecure:
            exposedPort: 443
-            tls:
-              enabled: true
+            
         providers:
           kubernetesIngress:
             enabled: true
