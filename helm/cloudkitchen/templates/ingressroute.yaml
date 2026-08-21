@@ -42,7 +42,7 @@ spec:
       services:
         - name: {{ .Values.restaurantService.servicename }}
           port: {{ .Values.restaurantService.port }}
-    - match: (Host(`{{ .Values.ingress.host }}`) || Host(`{{ .Values.ingress.lbIP }}`)) && (PathPrefix(`/api/cart`)
+    - match: (Host(`{{ .Values.ingress.host }}`) || Host(`{{ .Values.ingress.lbIP }}`)) && (PathPrefix(`/api/cart`) || PathPrefix(`/api/orders`))
       kind: Rule
       priority: 100
       services:
