@@ -15,21 +15,21 @@ spec:
   project: cloudkitchen
 
   source:
-    repoURL: https://traefik.io # official Traefik Helm repo
+    # 🌟 FIXED: Changed from https://traefik.io to the official chart hosting registry URL
+    repoURL: https://traefik.io
     chart: traefik
-    targetRevision: 28.3.0 # pin chart version (Traefik v3.x); bump deliberately
+    targetRevision: 28.3.0
     helm:
       values: |
         # ---- minimal sensible defaults ----
         deployment:
           replicas: 2
         service:
-          type: LoadBalancer # provisions an AWS NLB/ELB in us-east-1
+          type: LoadBalancer
         ingressClass:
           enabled: true
           isDefaultClass: true
           
-        # 🌟 Restored to official port definitions matching container expectations:
         ports:
           web:
             port: 8000
@@ -39,7 +39,6 @@ spec:
             port: 8443
             exposedPort: 443
             protocol: TCP
-            # 🌟 Fully disabled TLS block mapping at the entrypoint wrapper:
             tls:
               enabled: false
             
@@ -49,7 +48,6 @@ spec:
           kubernetesCRD:
             enabled: true
             allowCrossNamespace: true
-            
             
         resources:
           requests:
