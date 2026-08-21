@@ -118,7 +118,7 @@ db:
   sslmode: disable
 ingress:
   enabled: true
-  tls: false
+  tls: true
   host: vijaygiduthuri.in
   lbIP: 34.173.138.222
   entryPoint: web
