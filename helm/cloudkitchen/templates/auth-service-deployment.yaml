@@ -23,6 +23,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 65532
         fsGroup: 65532
+      imagePullSecrets: {{ toYaml .Values.globalImagePullSecrets | nindent 8 }}
       containers:
       - name: auth-service
         image: {{ .Values.authService.image }}
