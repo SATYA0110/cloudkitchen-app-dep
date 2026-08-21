@@ -120,7 +120,7 @@ ingress:
   enabled: true
   tls: false
   host: vijaygiduthuri.in
-  lbIP: 136.119.163.255
+  lbIP: 34.173.138.222
   entryPoint: web
   tlsSecretName: cloudkitchen-tls
   clusterIssuer: letsencrypt-prod
