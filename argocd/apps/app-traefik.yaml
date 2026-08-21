@@ -28,6 +28,7 @@ spec:
         ingressClass:
           enabled: true
           isDefaultClass: true
+        # 🌟 Cleaned and uniform indented values properties blocks:
         ports:
           web:
             exposedPort: 80
@@ -39,6 +40,7 @@ spec:
             enabled: true
           kubernetesCRD:
             enabled: true
+            
         resources:
           requests:
             cpu: 100m
