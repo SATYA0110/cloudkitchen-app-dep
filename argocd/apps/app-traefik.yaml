@@ -30,9 +30,9 @@ spec:
           isDefaultClass: true
         ports:
           web:
-           exposedPort: 80
+            exposedPort: 80
           websecure:
-           exposedPort: 443
+            exposedPort: 443
             
         providers:
           kubernetesIngress:
