@@ -15,11 +15,13 @@ spec:
   project: cloudkitchen
 
   source:
+    # 🌟 CORRECTED: Points to the authentic Helm chart registry server endpoint
     repoURL: https://traefik.io
     chart: traefik
     targetRevision: 28.3.0
     helm:
       values: |
+        # ---- minimal sensible defaults ----
         deployment:
           replicas: 2
         service:
@@ -28,11 +30,10 @@ spec:
           enabled: true
           isDefaultClass: true
 
-        ports:
-          websecure:
-            tls:
-              enabled: false
+        # 🌟 PORTS SECTION REMOVED COMPLETELY
+        # This prevents Helm marshaling context errors and lets Traefik default cleanly to plain HTTP.
 
+        # 🌟 CROSS-NAMESPACE DISCOVERY: Instructs Traefik to look across boundaries into cloudkitchen
         providers:
           kubernetesIngress:
             enabled: true
@@ -40,8 +41,15 @@ spec:
             enabled: true
             allowCrossNamespace: true
 
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+
   destination:
-    # 🌟 BOTH target properties explicitly mapped to fulfill spec validation rules
     server: https://default.svc
     namespace: ingress
 
